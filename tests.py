@@ -3,7 +3,7 @@
 # TODO:
 # - check for files, that should not exist
 
-from os import walk, remove, rmdir, mknod, mkdir, listdir, stat
+from os import walk, remove, rmdir, mknod, mkdir, listdir, stat, path
 from os.path import join, exists, split, sep as fssep, isdir
 from unittest import TestCase, main
 from subprocess import Popen
@@ -273,4 +273,7 @@ def remove_directory(path, only_content=True):
 
 
 if __name__ == "__main__":
-    main()
+    if not path.exists('/dev/fuse'):
+        print("Notice: Unable to run tests. FUSE device not found.")
+    else:
+        main()
